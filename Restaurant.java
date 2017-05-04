@@ -7,12 +7,16 @@ package restaurant;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -49,6 +53,7 @@ public class Restaurant extends Application{
     private Queue<String> waitingList = new LinkedList<>();
     private final Label listLabel = new Label("SEATING AVAILABILITY");
     private BorderPane mainPane = new BorderPane();
+    private int nNumberOfGuests = 0;
     
     public static void main(String[] args) {
         Application.launch(args);
@@ -68,8 +73,7 @@ public class Restaurant extends Application{
         //tables for 2 people
         b1.setPrefSize(200, 200);
         b1.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-        //b2.setPrefSize(200, 200);
-        //b2.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+        
         //tables for 6 people
         b6.setPrefSize(200, 300);
         b6.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
@@ -112,128 +116,79 @@ public class Restaurant extends Application{
     
     public void ButtonAction(){
         b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+          NumberOfGuests guests = new NumberOfGuests();
+          Stage secondStage = new Stage();
+            try {
+                guests.start(secondStage);
+                nNumberOfGuests = guests.getNumberOfGuests();
+            }
+            catch (Exception ex) {
+                Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(nNumberOfGuests  <= 0 || nNumberOfGuests >= 3){
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Too many guests at this table");
+                alert.setContentText("The minimum amount of guests is 1 and the maximum amount of guests is 2.  Please enter the number of guests again.");
+              try {
+                  guests.stop();
+              }
+              catch (Exception ex) {
+                  Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
+              }
+              try {
+                  guests.start(secondStage);
+              }
+              catch (Exception ex) {
+                  Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
+              }
+              
+            }
+           // System.out.printf("%d",guests.getNumberOfGuests());
+            
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b2.setOnAction(event ->{
+           
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b3.setOnAction(event ->{
+           
+            
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b4.setOnAction(event ->{
+            
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b5.setOnAction(event ->{
+
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b6.setOnAction(event ->{
+
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b7.setOnAction(event ->{
+
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b8.setOnAction(event ->{
+
         });
-        b1.setOnAction(event ->{
-            VBox secondPane = new VBox();
-            Label lNumberOfGuests = new Label("Number of Guests");
-            TextField txNumberOfGuests = new TextField("Enter the number of guests");
-            secondPane.getChildren().add(lNumberOfGuests);
-            secondPane.setPadding(new Insets(10,10,10,10));
-            secondPane.getChildren().add(txNumberOfGuests);
-            Stage secondStage = new Stage();
-            Scene secondScene = new Scene(secondPane,100,100);
-            secondStage.setScene(secondScene);
-            secondStage.show();
+        b9.setOnAction(event ->{
+            
         });
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        
         waitingList.offer("Brandon Hulbert");
         waitingList.offer("Cullen Campbell");
         oList.add(waitingList.poll());
         oList.add(waitingList.poll());
         setButtonSize();
         setButtonPosition();
+        ButtonAction();
         Scene scene = new Scene(mainPane,700,700);
         //scene.getStylesheets().add("StyleSheet.css");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
+        
     }
     
 }
