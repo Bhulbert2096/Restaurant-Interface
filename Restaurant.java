@@ -36,7 +36,6 @@ public class Restaurant extends Application {
 
     private final GridPane GridPane = new GridPane();
     private final Button b1 = new Button("Table #1");
-    //private final Button b2 = new Button("Table for 2");
     private final Button b2 = new Button("Table #2");
     private final Button b3 = new Button("Table #3");
     private final Button b4 = new Button("Table #4");
@@ -50,21 +49,20 @@ public class Restaurant extends Application {
     private final ListView<String> list = new ListView<>();
     private Queue<String> waitingList = new LinkedList<>();
     private final Label listLabel = new Label("SEATING AVAILABILITY");
-    private BorderPane mainPane = new BorderPane();
+    private final BorderPane mainPane = new BorderPane();
     private int nNumberOfGuests;
     private final Button bAddToWaitList = new Button("Add a guest to waiting list");
     private StoringGuestList collection = new StoringGuestList();
-    private Button bRelease1 = new Button("Release");
-    private Button bRelease2 = new Button("Release");
-    private Button bRelease3 = new Button("Release");
-    private Button bRelease4 = new Button("Release");
-    private Button bRelease5 = new Button("Release");
-    private Button bRelease6 = new Button("Release");
-    private Button bRelease7 = new Button("Release");
-    private Button bRelease8 = new Button("Release");
-    private Button bRelease9 = new Button("Release");
+    private final Button bRelease1 = new Button("Release");
+    private final Button bRelease2 = new Button("Release");
+    private final Button bRelease3 = new Button("Release");
+    private final Button bRelease4 = new Button("Release");
+    private final Button bRelease5 = new Button("Release");
+    private final Button bRelease6 = new Button("Release");
+    private final Button bRelease7 = new Button("Release");
+    private final Button bRelease8 = new Button("Release");
+    private final Button bRelease9 = new Button("Release");
     private String sNametoRemove;
-    private int nButtonPressed = -1;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -128,63 +126,53 @@ public class Restaurant extends Application {
         mainPane.setRight(list);
         mainPane.setLeft(bAddToWaitList);
     }
-    public void releaseButtonAction(){
-        switch(nButtonPressed){
-            case 1:
-                bRelease1.setOnAction(eh->{
-                    b1.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease1.setVisible(false);
-                });
-                break;
-            case 2:
-                bRelease2.setOnAction(eh->{
-                    b2.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease2.setVisible(false);
-                });
-                break;
-            case 3:
-                bRelease3.setOnAction(eh->{
-                    b3.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease3.setVisible(false);
-                });
-                break;
-            case 4:
-                bRelease4.setOnAction(eh->{
-                    b4.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease4.setVisible(false);
-                });
-                break;
-            case 5:
-                bRelease5.setOnAction(eh->{
-                    b5.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease5.setVisible(false);
-                });
-                break;
-            case 6:
-                bRelease6.setOnAction(eh->{
-                    b6.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease6.setVisible(false);
-                });
-                break;
-            case 7:
-                bRelease7.setOnAction(eh->{
-                    b7.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease7.setVisible(false);
-                });
-                break;
-            case 8:
-                bRelease8.setOnAction(eh->{
-                    b8.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease8.setVisible(false);
-                });
-                break;
-            case 9:
-                bRelease9.setOnAction(eh->{
-                    b9.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    bRelease9.setVisible(false);
-                });
-                break;
-        }
+
+    public void releaseButtonAction() {
+
+        bRelease1.setOnAction(eh -> {
+            b1.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease1.setVisible(false);
+        });
+
+        bRelease2.setOnAction(eh -> {
+            b2.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease2.setVisible(false);
+        });
+
+        bRelease3.setOnAction(eh -> {
+            b3.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease3.setVisible(false);
+        });
+
+        bRelease4.setOnAction(eh -> {
+            b4.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease4.setVisible(false);
+        });
+
+        bRelease5.setOnAction(eh -> {
+            b5.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease5.setVisible(false);
+        });
+
+        bRelease6.setOnAction(eh -> {
+            b6.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease6.setVisible(false);
+        });
+
+        bRelease7.setOnAction(eh -> {
+            b7.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease7.setVisible(false);
+        });
+
+        bRelease8.setOnAction(eh -> {
+            b8.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease8.setVisible(false);
+        });
+        bRelease9.setOnAction(eh -> {
+            b9.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+            bRelease9.setVisible(false);
+        });
+
     }
 
     public void ButtonAction() throws Exception {
@@ -220,8 +208,7 @@ public class Restaurant extends Application {
             secondStage.setScene(scene);
             secondStage.show();
         });
-        
-        
+
         b1.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
             Stage secondStage = new Stage();
@@ -234,7 +221,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -244,9 +231,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b1);
-            nButtonPressed = 1;
             bRelease1.setVisible(true);
-            GridPane.add(bRelease1, 0,0);
+            GridPane.add(bRelease1, 0, 0);
         });
         b2.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -261,7 +247,7 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -271,9 +257,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b2);
-            nButtonPressed = 2;
             bRelease2.setVisible(true);
-            GridPane.add(bRelease2, 1,0);
+            GridPane.add(bRelease2, 1, 0);
         });
         b3.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -288,7 +273,7 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b3);
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -298,9 +283,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b3);
-            nButtonPressed = 3;
             bRelease3.setVisible(true);
-            GridPane.add(bRelease3, 2,0);
+            GridPane.add(bRelease3, 2, 0);
         });
         b4.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -314,7 +298,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -324,9 +308,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b4);
-            nButtonPressed = 4;
             bRelease3.setVisible(true);
-            GridPane.add(bRelease4,0,1);
+            GridPane.add(bRelease4, 0, 1);
         });
         b5.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -340,7 +323,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -350,9 +333,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b5);
-            nButtonPressed = 5;
             bRelease5.setVisible(true);
-            GridPane.add(bRelease5, 1,1);
+            GridPane.add(bRelease5, 1, 1);
         });
         b6.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -366,7 +348,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -376,9 +358,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b6);
-            nButtonPressed = 6;
             bRelease6.setVisible(true);
-            GridPane.add(bRelease6, 2,1);
+            GridPane.add(bRelease6, 2, 1);
         });
         b7.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -392,7 +373,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -402,9 +383,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b7);
-            nButtonPressed = 7;
             bRelease7.setVisible(true);
-            GridPane.add(bRelease7, 0,2);
+            GridPane.add(bRelease7, 0, 2);
         });
         b8.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -418,7 +398,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -428,9 +408,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b8);
-            nButtonPressed = 8;
             bRelease8.setVisible(true);
-            GridPane.add(bRelease8, 1,2);
+            GridPane.add(bRelease8, 1, 2);
         });
         b9.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests(list);
@@ -444,7 +423,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-             oList.remove(sNametoRemove);
+            oList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -454,9 +433,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b9);
-            nButtonPressed = 9;
             bRelease9.setVisible(true);
-            GridPane.add(bRelease9, 2,2);
+            GridPane.add(bRelease9, 2, 2);
         });
     }
 
