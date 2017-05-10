@@ -5,10 +5,8 @@
  */
 package restaurant;
 
-import java.util.ArrayList;
+
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -49,30 +47,46 @@ public class NumberOfGuests extends Application {
     private Button mainPaneButton = new Button();
     
 
+    //this will set the mainpane button that was pressed.
     public void setMainPaneButton(Button mainButton) {
         this.mainPaneButton = mainButton;
     }
 
-    
-    public int getNumberOfGuests() {
-        return nNumberOfGuests;
-    }
-
-    public NumberOfGuests(ListView<String> listview) {
-        this.list = listview;
+    //this method will check if the number that was parsed is not a character but truly is a number
+    public boolean CheckNumberParsing(){
+        
+        boolean parseSuccessful = true;
+        try{
+             nNumberOfGuests = Integer.parseInt(txNumberOfGuests.getText());
+            }catch(NumberFormatException e){
+                parseSuccessful = false;
+                //this will display an error message to the console 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("NonInteger value entered");
+            alert.show();
+            }
+        //this return value will prevent an error from being thrown 
+        return parseSuccessful;
     }
  
     public void ButtonAction(Stage stage) {
+        //this is where the go button for the secondary window is pressed and what is 
+        //done after it has been pressed.  
         bGo.setOnAction(event -> {
-           
+           //this will get the text that was entered into the textfield.
             String sNumberOfGuests = txNumberOfGuests.getText();
+            boolean parseSuccessful = CheckNumberParsing();
+            //this will determine if the parsing was successful or not.  If it was not
+            //then the program will not continue.  
+            if(parseSuccessful == true){
+                //this will check if there is nothing in the test field and the user just hit enter.
             if (sNumberOfGuests == null || "".equals(sNumberOfGuests)) {
                 txNumberOfGuests.setText("");
             }
-            else {
-                nNumberOfGuests = Integer.parseInt(sNumberOfGuests);
-
+            
                 Stage secondStage = new Stage();
+                //this will check if the number that the user entered was acceptable or not.
+                //if it is not then the program will display an error message below.
                 if (nNumberOfGuests <= 0 || nNumberOfGuests > nMaximum) {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Too many guests at this table");
@@ -81,9 +95,8 @@ public class NumberOfGuests extends Application {
                     txNumberOfGuests.setText("");
                 }
 
+                //if all checks have passed then the button that was selected will change color to red and close the secondary stage.
                 else {
-                    System.out.println("IN NUMBER CLASS" + nNumberOfGuests);
-                    //this will take the item that is selected and remove it from the list
                     
                     mainPaneButton.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
                     
@@ -91,10 +104,11 @@ public class NumberOfGuests extends Application {
                     
                 }
             }
+            
         });
     }
 
-    
+    //this will get the desired range for the number of guests at the table
     public void GuestNumberRange(int nMin, int nMax) {
         nMinimum = nMin;
         nMaximum = nMax;
@@ -107,6 +121,7 @@ public class NumberOfGuests extends Application {
         ButtonAction(secondStage);
         bGo.setPrefSize(300, 100);
         lNumberOfGuests.setText("Max Number of Guests " + nMaximum);
+        //this will set a border around the labels
         lListLabel.setBorder(new Border(new BorderStroke(Color.BLACK,
                 BorderStrokeStyle.SOLID, new CornerRadii(0), BorderWidths.DEFAULT)));
         lNumberOfGuests.setBorder(new Border(new BorderStroke(Color.BLACK,

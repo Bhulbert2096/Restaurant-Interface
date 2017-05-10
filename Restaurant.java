@@ -68,6 +68,7 @@ public class Restaurant extends Application {
         Application.launch(args);
     }
 
+    //this will set the button size and color.
     public void setButtonSize() {
         //tables for 4 people
 
@@ -98,9 +99,8 @@ public class Restaurant extends Application {
 
     }
 
+    //this will set the location of all the buttons and labels 
     public void setButtonPosition() {
-        // mainPane.getChildren().add(listLabel);
-        //mainPane.setPadding(new Insets(50, 0, 0, 0));
         list.setItems(oList);
 
         list.setPrefSize(400, 100);
@@ -118,6 +118,7 @@ public class Restaurant extends Application {
         GridPane.add(b9, 2, 2);
         GridPane.setAlignment(Pos.CENTER);
 
+        //this will set the background color to transparent.
         mainPane.setStyle("-fx-background-color: transparent;");
         HPane.getChildren().addAll(listLabel);
         HPane.setAlignment(Pos.CENTER);
@@ -127,6 +128,7 @@ public class Restaurant extends Application {
         mainPane.setLeft(bAddToWaitList);
     }
 
+    //this will set all fo the release button actions to change the color to green and set their visibility to false.
     public void releaseButtonAction() {
 
         bRelease1.setOnAction(eh -> {
@@ -175,13 +177,16 @@ public class Restaurant extends Application {
 
     }
 
+    //this will do all the main button actions that have been pressed and handle them accordingly.
     public void ButtonAction() throws Exception {
 
         list.refresh();
+        //this will read the collection of guests from a file.
         collection.readCollection2();
         list.refresh();
         bAddToWaitList.setOnAction(event -> {
-
+            //this will create a secondary window that will allow the user to ender 
+            //the name of the guest and add the guest to the observable arraylist.
             GridPane secondPane = new GridPane();
             TextField txNewGuest = new TextField();
             Button bSubmit = new Button("Submit Changes");
@@ -195,6 +200,7 @@ public class Restaurant extends Application {
                 collection.addNameToList(txNewGuest.getText());
                 oList.add(txNewGuest.getText());
                 list.refresh();
+                //once the user enters the name those names will be added and then reread from the file.
                 try {
                     collection.storeCollection();
                 }
@@ -209,8 +215,12 @@ public class Restaurant extends Application {
             secondStage.show();
         });
 
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b1.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 2);
@@ -234,8 +244,12 @@ public class Restaurant extends Application {
             bRelease1.setVisible(true);
             GridPane.add(bRelease1, 0, 0);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b2.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 4);
@@ -260,8 +274,12 @@ public class Restaurant extends Application {
             bRelease2.setVisible(true);
             GridPane.add(bRelease2, 1, 0);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b3.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 4);
@@ -286,8 +304,12 @@ public class Restaurant extends Application {
             bRelease3.setVisible(true);
             GridPane.add(bRelease3, 2, 0);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b4.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 4);
@@ -311,8 +333,12 @@ public class Restaurant extends Application {
             bRelease3.setVisible(true);
             GridPane.add(bRelease4, 0, 1);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b5.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             guests.GuestNumberRange(1, 4);
             sNametoRemove = list.getSelectionModel().getSelectedItem();
@@ -336,8 +362,12 @@ public class Restaurant extends Application {
             bRelease5.setVisible(true);
             GridPane.add(bRelease5, 1, 1);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b6.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 6);
@@ -361,8 +391,12 @@ public class Restaurant extends Application {
             bRelease6.setVisible(true);
             GridPane.add(bRelease6, 2, 1);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b7.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 6);
@@ -386,8 +420,12 @@ public class Restaurant extends Application {
             bRelease7.setVisible(true);
             GridPane.add(bRelease7, 0, 2);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b8.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 8);
@@ -411,8 +449,12 @@ public class Restaurant extends Application {
             bRelease8.setVisible(true);
             GridPane.add(bRelease8, 1, 2);
         });
+        //when the user presses each of the table buttons he or she will be directed to a secondary window 
+        //this will ask them to enter the amount of people sitting at each table. 
+        //once the user has entered this data the console will then create a release button for the 
+        //user to release the table once the guests have finished.
         b9.setOnAction(event -> {
-            NumberOfGuests guests = new NumberOfGuests(list);
+            NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
             sNametoRemove = list.getSelectionModel().getSelectedItem();
             guests.GuestNumberRange(1, 8);
@@ -441,6 +483,8 @@ public class Restaurant extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        //this will read the collection of guests.  this is a fail safe if 
+        // user accidently closes the UI.
         collection.readCollection2();
         oList.addAll(collection.getGuestCollection());
         setButtonSize();
@@ -448,7 +492,6 @@ public class Restaurant extends Application {
         ButtonAction();
         releaseButtonAction();
         Scene scene = new Scene(mainPane, 700, 700);
-        //scene.getStylesheets().add("StyleSheet.css");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();

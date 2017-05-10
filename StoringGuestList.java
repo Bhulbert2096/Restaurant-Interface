@@ -31,7 +31,7 @@ public class StoringGuestList {
         GuestCollection.add(sName);
     }
       
-      
+      //this will read the collection from a file
     public void readCollection2() throws Exception {
 
         File f = new File("Guests.dat");
@@ -46,7 +46,7 @@ public class StoringGuestList {
         }
     }
     
-    
+    //this will store the collection to a file(the collection is the list of guests)
     public void storeCollection() throws Exception {
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(new File("Guests.dat")));) {
