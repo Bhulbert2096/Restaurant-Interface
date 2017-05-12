@@ -45,7 +45,7 @@ public class Restaurant extends Application {
     private final Button b8 = new Button("Table #8");
     private final Button b9 = new Button("Table #9");
     private final HBox HPane = new HBox();
-    private final ObservableList<String> oList = FXCollections.observableArrayList();
+    private final ObservableList<String> obList = FXCollections.observableArrayList();
     private final ListView<String> list = new ListView<>();
     private Queue<String> waitingList = new LinkedList<>();
     private final Label listLabel = new Label("SEATING AVAILABILITY");
@@ -53,15 +53,15 @@ public class Restaurant extends Application {
     private int nNumberOfGuests;
     private final Button bAddToWaitList = new Button("Add a guest to waiting list");
     private StoringGuestList collection = new StoringGuestList();
-    private final Button bRelease1 = new Button("Release");
-    private final Button bRelease2 = new Button("Release");
-    private final Button bRelease3 = new Button("Release");
-    private final Button bRelease4 = new Button("Release");
-    private final Button bRelease5 = new Button("Release");
-    private final Button bRelease6 = new Button("Release");
-    private final Button bRelease7 = new Button("Release");
-    private final Button bRelease8 = new Button("Release");
-    private final Button bRelease9 = new Button("Release");
+    private final Button btRelease1 = new Button("Release");
+    private final Button btRelease2 = new Button("Release");
+    private final Button btRelease3 = new Button("Release");
+    private final Button btRelease4 = new Button("Release");
+    private final Button btRelease5 = new Button("Release");
+    private final Button btRelease6 = new Button("Release");
+    private final Button btRelease7 = new Button("Release");
+    private final Button btRelease8 = new Button("Release");
+    private final Button btRelease9 = new Button("Release");
     private String sNametoRemove;
 
     public static void main(String[] args) {
@@ -101,7 +101,7 @@ public class Restaurant extends Application {
 
     //this will set the location of all the buttons and labels 
     public void setButtonPosition() {
-        list.setItems(oList);
+        list.setItems(obList);
 
         list.setPrefSize(400, 100);
         GridPane.setPadding(new Insets(20, 20, 20, 20));
@@ -131,48 +131,48 @@ public class Restaurant extends Application {
     //this will set all fo the release button actions to change the color to green and set their visibility to false.
     public void releaseButtonAction() {
 
-        bRelease1.setOnAction(eh -> {
+        btRelease1.setOnAction(eh -> {
             b1.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease1.setVisible(false);
+            btRelease1.setVisible(false);
         });
 
-        bRelease2.setOnAction(eh -> {
+        btRelease2.setOnAction(eh -> {
             b2.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease2.setVisible(false);
+            btRelease2.setVisible(false);
         });
 
-        bRelease3.setOnAction(eh -> {
+        btRelease3.setOnAction(eh -> {
             b3.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease3.setVisible(false);
+            btRelease3.setVisible(false);
         });
 
-        bRelease4.setOnAction(eh -> {
+        btRelease4.setOnAction(eh -> {
             b4.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease4.setVisible(false);
+            btRelease4.setVisible(false);
         });
 
-        bRelease5.setOnAction(eh -> {
+        btRelease5.setOnAction(eh -> {
             b5.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease5.setVisible(false);
+            btRelease5.setVisible(false);
         });
 
-        bRelease6.setOnAction(eh -> {
+        btRelease6.setOnAction(eh -> {
             b6.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease6.setVisible(false);
+            btRelease6.setVisible(false);
         });
 
-        bRelease7.setOnAction(eh -> {
+        btRelease7.setOnAction(eh -> {
             b7.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease7.setVisible(false);
+            btRelease7.setVisible(false);
         });
 
-        bRelease8.setOnAction(eh -> {
+        btRelease8.setOnAction(eh -> {
             b8.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease8.setVisible(false);
+            btRelease8.setVisible(false);
         });
-        bRelease9.setOnAction(eh -> {
+        btRelease9.setOnAction(eh -> {
             b9.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-            bRelease9.setVisible(false);
+            btRelease9.setVisible(false);
         });
 
     }
@@ -198,7 +198,7 @@ public class Restaurant extends Application {
             Stage secondStage = new Stage();
             bSubmit.setOnAction(e -> {
                 collection.addNameToList(txNewGuest.getText());
-                oList.add(txNewGuest.getText());
+                obList.add(txNewGuest.getText());
                 list.refresh();
                 //once the user enters the name those names will be added and then reread from the file.
                 try {
@@ -219,6 +219,7 @@ public class Restaurant extends Application {
         //this will ask them to enter the amount of people sitting at each table. 
         //once the user has entered this data the console will then create a release button for the 
         //user to release the table once the guests have finished.
+        
         b1.setOnAction(event -> {
             NumberOfGuests guests = new NumberOfGuests();
             Stage secondStage = new Stage();
@@ -231,7 +232,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -241,8 +242,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b1);
-            bRelease1.setVisible(true);
-            GridPane.add(bRelease1, 0, 0);
+            btRelease1.setVisible(true);
+            GridPane.add(btRelease1, 0, 0);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -261,7 +262,7 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -271,8 +272,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b2);
-            bRelease2.setVisible(true);
-            GridPane.add(bRelease2, 1, 0);
+            btRelease2.setVisible(true);
+            GridPane.add(btRelease2, 1, 0);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -291,7 +292,7 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b3);
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -301,8 +302,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b3);
-            bRelease3.setVisible(true);
-            GridPane.add(bRelease3, 2, 0);
+            btRelease3.setVisible(true);
+            GridPane.add(btRelease3, 2, 0);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -320,7 +321,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -330,8 +331,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b4);
-            bRelease3.setVisible(true);
-            GridPane.add(bRelease4, 0, 1);
+            btRelease3.setVisible(true);
+            GridPane.add(btRelease4, 0, 1);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -349,7 +350,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -359,8 +360,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b5);
-            bRelease5.setVisible(true);
-            GridPane.add(bRelease5, 1, 1);
+            btRelease5.setVisible(true);
+            GridPane.add(btRelease5, 1, 1);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -378,7 +379,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -388,8 +389,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b6);
-            bRelease6.setVisible(true);
-            GridPane.add(bRelease6, 2, 1);
+            btRelease6.setVisible(true);
+            GridPane.add(btRelease6, 2, 1);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -407,7 +408,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -417,8 +418,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b7);
-            bRelease7.setVisible(true);
-            GridPane.add(bRelease7, 0, 2);
+            btRelease7.setVisible(true);
+            GridPane.add(btRelease7, 0, 2);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -436,7 +437,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -446,8 +447,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b8);
-            bRelease8.setVisible(true);
-            GridPane.add(bRelease8, 1, 2);
+            btRelease8.setVisible(true);
+            GridPane.add(btRelease8, 1, 2);
         });
         //when the user presses each of the table buttons he or she will be directed to a secondary window 
         //this will ask them to enter the amount of people sitting at each table. 
@@ -465,7 +466,7 @@ public class Restaurant extends Application {
             catch (Exception ex) {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
-            oList.remove(sNametoRemove);
+            obList.remove(sNametoRemove);
 
             list.refresh();
             try {
@@ -475,8 +476,8 @@ public class Restaurant extends Application {
                 Logger.getLogger(Restaurant.class.getName()).log(Level.SEVERE, null, ex);
             }
             guests.setMainPaneButton(b9);
-            bRelease9.setVisible(true);
-            GridPane.add(bRelease9, 2, 2);
+            btRelease9.setVisible(true);
+            GridPane.add(btRelease9, 2, 2);
         });
     }
 
@@ -486,7 +487,7 @@ public class Restaurant extends Application {
         //this will read the collection of guests.  this is a fail safe if 
         // user accidently closes the UI.
         collection.readCollection2();
-        oList.addAll(collection.getGuestCollection());
+        obList.addAll(collection.getGuestCollection());
         setButtonSize();
         setButtonPosition();
         ButtonAction();

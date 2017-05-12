@@ -30,8 +30,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- *
- * @author Admin
+ *Brandon Hulbert
+ * Restaurant UI 
+ * May 11, 2017
  */
 public class NumberOfGuests extends Application {
 
